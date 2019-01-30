@@ -1,0 +1,35 @@
+.block_random{
+    background-color: #42424291;
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    img{
+        padding: 30px;
+        border-radius: 50px;
+        width: 200px;
+        height: 200px;
+    }
+    .info_card{
+        margin-left: 20px;
+        padding: 30px 0;
+        h3{
+            font-size: 40px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        li{
+            display: flex;
+            border-top: #757575 solid 1px;
+            margin-left: 30px;
+            font-size: 20px;
+            padding: 8px 0;
+            color: #fff;
+            span{
+                margin: 0 5px;
+            }
+        }
+    }
+    
+}
+
