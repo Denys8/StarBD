@@ -1,9 +1,11 @@
 .block_random{
     background-color: #42424291;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     border-radius: 15px;
     margin-bottom: 30px;
+    min-height: 150px;
     img{
         padding: 30px;
         border-radius: 50px;
