@@ -1,0 +1,15 @@
+.error_indicator{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h2, span{
+        color: #fff;
+    }
+    h2{
+        font-size: 30px;
+    }
+    span{
+        font-size: 20px;
+    }
+}
