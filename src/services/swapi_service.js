@@ -46,9 +46,9 @@ export default class SwapiService {
     _extractId(item) {
         const idRegExp = /\/([0-9]*)\/$/;
         return item.url.match(idRegExp)[1];
-    }
+    };
 
-    _transformPlanet(planet) {
+    _transformPlanet = (planet) => {
         return {
             id: this._extractId(planet),
             name: planet.name,
@@ -58,26 +58,27 @@ export default class SwapiService {
         };
     };
 
-    _transformStarship(starship) {
+    _transformStarship = (starship) => {
         return {
             id: this._extractId(starship),
             name: starship.name,
             model: starship.model,
             manufacturer: starship.manufacturer,
-            costInCredits: starship.costInCredits,
+            costInCredits: starship.cost_in_credits,
             length: starship.length,
             crew: starship.crew,
             passengers: starship.passengers,
-            cargoCapacity: starship.cargoCapacity,
+            cargoCapacity: starship.cargo_capacity
         };
     };
 
-    _tranformPerson(person) {
+    _tranformPerson = (person) => {
         return {
             id: this._extractId(person),
             name: person.name,
-            birthYear: person.birthYear,
-            eyeColor: person.eyeColor,
+            gender: person.gender,
+            birthYear: person.birth_year,
+            eyeColor: person.eye_color,
         };
     };
 };
