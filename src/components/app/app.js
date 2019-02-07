@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-
 import Header from '../header';
 import RandomPlanet from '../random_planet';
-import ItemList from '../item_list';
-import PersonDetails from '../person_details';
+import ErrorButton from '../error_button';
+import ErrorIndicator from '../error_indicator';
+import PeoplePage from '../people_page';
 
 import './app.scss';
 
@@ -11,7 +11,7 @@ class App extends Component {
 
     state = {
         showRandomPlanet: true,
-        selectedPerson: 1,
+        hasError: false,
     };
 
     toggleRandomPlanet = () => {
@@ -22,13 +22,18 @@ class App extends Component {
         });
     };
 
-    onPersonSelected = (id) => {
-        this.setState({
-            selectedPerson: id,
-        });
-    };
+
+
+    componentDidCatch() {
+        console.log('componentDidCatch');
+        this.setState({ hasError: true });
+    }
 
     render() {
+
+        if (this.state.hasError) {
+            return <ErrorIndicator />
+        };
 
         const planet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
 
@@ -42,11 +47,10 @@ class App extends Component {
                 >
                     Toggle Random Planet
                 </button>
-
-                <div className="card">
-                    <ItemList OnItemSelected={this.onPersonSelected} />
-                    <PersonDetails personId={this.state.selectedPerson} />
-                </div>
+                <ErrorButton />
+                <PeoplePage />
+                <PeoplePage />
+                <PeoplePage />
             </div>
         )
     };
