@@ -1,58 +1,50 @@
-import React, { Component } from 'react';
-import SwapiService from '../../services/swapi_service';
-import Spinner from '../spinner';
+import React, { Component } from "react";
+import Spinner from "../spinner";
 
-import './item_list.scss';
+import "./item_list.scss";
 
 class ItemList extends Component {
+  state = {
+    itemList: null
+  };
 
-    swapiService = new SwapiService();
+  componentDidMount() {
+    const { getData } = this.props;
 
-    state = {
-        peopleList: null,
-    };
+    getData().then(itemList => {
+      this.setState({
+        itemList
+      });
+    });
+  }
 
-    componentDidMount() {
-        this.swapiService
-            .getAllPeaple()
-            .then((peopleList) => {
-                this.setState({
-                    peopleList
-                });
-            });
-    };
+  renderItems(arr) {
+    return arr.map(item => {
+      const { id } = item;
+      const label = this.props.renderItem(item);
+      return (
+        <li key={id} onClick={() => this.props.OnItemSelected(id)}>
+          {label}
+        </li>
+      );
+    });
+  }
 
-    renderItems(arr) {
-        return arr.map(({ id, name }) => {
-            return (
-                <li
-                    key={id}
-                    onClick={() => this.props.OnItemSelected(id)}
-                >
-                    {name}
-                </li>
-            );
-        });
-    };
+  render() {
+    const { itemList } = this.state;
 
-    render() {
+    if (!itemList) {
+      return <Spinner />;
+    }
 
-        const { peopleList } = this.state;
+    const items = this.renderItems(itemList);
 
-        if (!peopleList) {
-            return <Spinner />
-        }
-
-        const items = this.renderItems(peopleList);
-
-        return (
-            <div className="card_list" >
-                <ul>
-                    {items}
-                </ul>
-            </div>
-        );
-    };
-};
+    return (
+      <div className="card_list">
+        <ul>{items}</ul>
+      </div>
+    );
+  }
+}
 
 export default ItemList;
