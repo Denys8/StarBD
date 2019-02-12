@@ -51,28 +51,6 @@ class App extends Component {
         </div>
 
         <PeoplePage />
-
-        <div className="card">
-          <ItemList
-            OnItemSelected={this.onPersonSelected}
-            getData={this.swapiService.getAllPlanets}
-            renderItem={item => (
-              <span>
-                {item.name} <button>!</button>
-              </span>
-            )}
-          />
-          <PersonDetails personId={this.state.selectedPerson} />
-        </div>
-        
-        <div className="card">
-          <ItemList
-            OnItemSelected={this.onPersonSelected}
-            getData={this.swapiService.getAllStarships}
-            renderItem={item => item.name}
-          />
-          <PersonDetails personId={this.state.selectedPerson} />
-        </div>
       </div>
     );
   }

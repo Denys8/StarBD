@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Spinner from "../spinner";
-
 import "./item_list.scss";
 
 class ItemList extends Component {
